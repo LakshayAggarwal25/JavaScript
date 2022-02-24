@@ -410,5 +410,77 @@
         - ![](./Images/callapplybind.png)  
 
         - ### Constructor Functions
+            
             - If we need to create multiple objects having same properties, a constructor function is used.
             
+            - ![](./Images/constructfunc.png)
+        
+        - ### Inheritance 
+            
+            - In JS it is also possible to use methods of one object in another if we inherit from it. Because of this only we are able to use all these different kinds of functions on arrays/strings/set, etc. What I mean here is that lets suppose an array `let arr = ["🚀","🍏","🍎"]` then we are able to do `arr.map()`, `arr.filter()` and all the other methods as here arr inherit from `Array` internally in JS. 
+            
+            - Similarly we can also create objects that can inherit methods and variables of other objects by using **`Object.create()`**, we can pass an obj inside it and it will set that object(which has been passed as a parameter) as sort of a parent to the current obj. ( *Known as [[prototype]] in JS* ).
+            - Eg `let obj = Object.create(obj1)` , then we will be able to use all the methods and variable of obj1 in obj.
+
+            - ![](./Images/inheritance.png)
+
+---
+
+- # **Asynchronous JavaScript**
+    - **JS is single threaded synchronous language**.
+    
+    - ![](./Images/ajaxstart.png)
+    - By this we know that JS is synchronous language.
+    - Which means that JS runs from top to bottom
+
+    - ## setTimeout and clearTimeout
+        
+        - `setTimeout()` is a function which takes a callback function and time(in milliseconds) as the parameters and it will call this callback function after the time expires. The time passed in the setTimeout is the minimum time after which call to the function will be made and not a fixed time after which the function call is made.
+
+        - Now setTimeout() is function which is provided by the bowser to us and not JS.
+        - setTimeout() is also an async function, which means it will not block the flow of the code, Hence we cannot use setTimeout to pause the execution of the code for some amount of time if want to.
+
+        - **How setTimeout() Works ?**
+        
+        - ![](./Images/st1.png)
+        
+        - ![](./Images/st2.png)
+        - ![](./Images/st3.png)
+        - ![](./Images/st4.png)
+        - ![](./Images/st5.png)
+        - ![](./Images/st6.png)
+        - ![](./Images/st7.png)
+        - ![](./Images/st8.png)
+
+        - With this, we now know that the time passed in the setTimeout is the time after which the callback function will be added in the callback queue and the function will execute when function is moved from **callback queue** to **call stack**.
+        - Now, this is the reason that in setTimeout the time passed is the minimum time to execute the function and not the absolute time. As the function will only be executed when the **event loop** sees the call stack empty and then function is pushed from **callback queue** to **call stack** where it finally executes.
+        - Therefore, a **setTimeout() with 0ms time** will also execute after the whole script is executed as the function will be passed to the callback queue and will have to wait there until the call stack is empty. And call stack would be empty only when the whole script is executed.
+
+        - When a setTimeout is called it returns an id as I've shown in the above example, the use of this id is to clear this timeout. i.e the function which was passed as a parameter in setTimeout will be deleted from the callback queue only. And it will not be executed.
+
+        - ![](./Images/ct1.png)
+        - In this code the if(1<2) is a mock condition, in practical applications there might be a case where one doesn't require the function passed in setTimeout to execute anymore so clearTimeout can be used to do so.
+
+    - ## setInterval and clearInterval
+        
+        - `setInterval()` works very similar to `setTimeout()`.
+        - setInterval() also returns an id when called
+        
+        - Like in `setTimeout()` , `setInterval()` is also a function provided by the browser. Only difference is that setTimeout pushes the function in callback queue only once after the time is expired, whereas in setInterval will push the function in the callback queue after every time interval. For eg consider a `setTimeout(fun,5000)` and a `setInterval(fun,5000)` in this case `setTimeout` will push function fun in the callback queue after 5 Seconds only once where as `setInterval` will push the function fun in the callback queue after every 5 Seconds are passed. And to stop this is clearInterval is used.
+    
+    - ## callbacks in detail
+         
+        - Callbacks are function that passed to other functions as parameters.  
+
+        - ![](./Images/cb2.png)
+        - Other use of callback is to control the flow the code in a program.
+        
+        - ### Callback Hell 
+            
+            - When we use callback function in a nested way it is known as a callback hell (i.e callback inside callback inside callback and so on)
+            - Most simple I could think of, a function which prints the value of variable x and updates it by a factor one after every second and if at any point it is less than 5 it prints value is less than 5.
+
+            - ![](./Images/cbhell.png) 
+
+            - Also, if you rotate this image by 90 to the left it resembles a pyramid structure, hence it is also known as **pyramid of doom**.
+            - [A more practical example on pyramid of doom](https://github.com/harshitvee/javascript-beginning-to-mastery/blob/main/part3/asynchronous-javascript/133.js#:~:text=changeText(heading1%2C%20%22one%22%2C%22violet,Heading1%20does%20not%20exist%22)%7D))
