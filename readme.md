@@ -1,3 +1,5 @@
+SideNote before you start -  If you don't understand something in the start let it be a keyword or a concept, just go through the entire document once because there is a lot of chance once you go through the entire doc you will be able to understand what you didn't initially.
+
 # **Javascript**
 - To print something in the console we use console.log();
 - ## Variables
@@ -431,9 +433,9 @@
     
     - ![](./Images/ajaxstart.png)
     - By this we know that JS is synchronous language.
-    - Which means that JS runs from top to bottom
+    - Which means that JS runs from top to bottom executing one line at a time
 
-    - ## setTimeout and clearTimeout
+    - ## Event Loop, Callback Queue, setTimeout and clearTimeout
         
         - `setTimeout()` is a function which takes a callback function and time(in milliseconds) as the parameters and it will call this callback function after the time expires. The time passed in the setTimeout is the minimum time after which call to the function will be made and not a fixed time after which the function call is made.
 
@@ -483,4 +485,37 @@
             - ![](./Images/cbhell.png) 
 
             - Also, if you rotate this image by 90 to the left it resembles a pyramid structure, hence it is also known as **pyramid of doom**.
-            - [A more practical example on pyramid of doom](https://github.com/harshitvee/javascript-beginning-to-mastery/blob/main/part3/asynchronous-javascript/133.js#:~:text=changeText(heading1%2C%20%22one%22%2C%22violet,Heading1%20does%20not%20exist%22)%7D))
+            - [A more practical example on pyramid of doom](https://github.com/harshitvee/javascript-beginning-to-mastery/blob/main/part3/asynchronous-javascript/133.js#:~:text=changeText(heading1%2C%20%22one%22%2C%22violet,Heading1%20does%20not%20exist%22)%7D)
+
+    - ## Promises 
+
+        - Think of promises in JavaScript as promises in real life.
+        
+        - For example, when you promise someone that you would do some task for them, then there are only two possible outcomes either you do that task(i.e promise is resolved) or you are not able to do the task(i.e promise is rejected) reason might be anything. Now the time period when you are trying to do the task it is still unknown that will you be able to complete that task or not, during this time the state of the promise is pending. And when the promise is resolved (task was completed successfully) at this point the state of the promise is known as fulfilled or if the promise is rejected (task was not completed successfully) then at this time the state of the promise is known as rejected. And when the promise is either fulfilled or rejected then the state of the promise is settled. This is a very high level definition of a promise.
+        
+        - ![](./Images/p1main.png)
+
+        - Promises are async in nature. i.e they do not block the code and are handled in the browser
+
+        - ![](./Images/p2main1.png)
+        - ![](./Images/p2main2.png)
+        - ![](./Images/p2main3.png)
+
+        - When a promise is called its state is pending.
+        - When a promise returns a response its state is fulfilled.
+        - When a promise returns an error its state is rejected.
+        - A promise is said to be settled if it is either fulfilled or rejected, but not pending.
+
+        - Difference between callback queue and microtask queue is that callback queue has less priority than the microtask queue. What this means is that in a situation when the call stack is empty and there is something in both callback queue and microtask queue then function in the microtask queue will be pushed to call stack and after that function from the callback queue will be pushed to call stack.   
+        - `.then()` always returns a promise that means it is possible to do chaining in promises. 
+        
+        - [**Watch from 4.00 to 5.40 really imp**](https://youtu.be/vn3tm0quoqE?t=240)
+        - ![](./Images/p3func.png)
+
+        - ### async await
+
+            - async await is used to write promise based code which is easy to understand. 
+
+            - `async` keyword is used to defined that the function is async and then `await` can be used inside it.
+            - Code used so far to explain promises can be rewritten as : (It will behave the same way as before just the syntax is changed)
+            - ![](./Images/p11.png)
