@@ -8,7 +8,7 @@ SideNote before you start -  If you don't understand something in the start let 
     - In JS we can use `var`, `let`, `const` to declare variables.
     - Rules for naming variables
         - Can't start a variable with a name with a number
-
+        - A variable cannot be a keyword.
         - Can't use spaces in variable names
         - `$` and ` _ ` are the symbols allowed in variable names
     - Convention - camelCase convention is generally followed in JS
